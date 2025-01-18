@@ -1,0 +1,29 @@
+.bg-purple {
+  background-color: #00008b;
+}
+
+.nav-item.active .nav-link {
+  border: 2px solid white;
+  border-radius: 20px;
+}
+
+/* footer {
+  background-color: gray;
+  height: 40px;
+} */
+
+/* .navbar-nav .nav-link.active {
+  border: 2px solid #fff;
+  border-radius: 20px; 
+} */
+
+/* To reset the default styles of .nav-link */
+/* .navbar-nav .nav-link {
+  border: 0;
+  background: none;
+} */
+
+/* styles.css */
+/* .active {
+  border-bottom: solid #fff 3px;
+} */
