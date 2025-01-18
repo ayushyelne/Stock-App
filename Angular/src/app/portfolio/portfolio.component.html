@@ -1,0 +1,149 @@
+<div class="container mt-5 text-start row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="mb-4">
+      <h1 class="text-start mb-4">My Portfolio</h1>
+      <div *ngIf="isPortfolioLoading" class="spinner-container">
+        <mat-spinner [diameter]="50"></mat-spinner>
+      </div>
+      <p *ngIf="!isPortfolioLoading">
+        Money in Wallet: <strong>${{ balance | number : "1.2-2" }}</strong>
+      </p>
+    </div>
+
+    <div *ngIf="!isPortfolioLoading">
+      <div *ngIf="portfolioItems && portfolioItems.length; else noPortfolio">
+        <div class="card mb-3" *ngFor="let item of portfolioItems">
+          <div class="card-header">
+            <h3 class="card-title">
+              {{ item.companyTicker }}
+              <span class="text-muted h5">{{ item.companyName }}</span>
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p>
+                  Quantity: <span>{{ item.quantity }}</span>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  Change:
+                  <!-- <span
+                  [ngClass]="
+                    updateColor(stockQuotes[item.companyTicker]?.changePercent)
+                  "
+                >
+                  {{
+                    stockQuotes[item.companyTicker]?.changePercent
+                      | number : "1.2-2"
+                  }}%
+                </span> -->
+                  <span
+                    [ngClass]="
+                      updateColor(
+                        stockQuotes[item.companyTicker]?.changePercent
+                      )
+                    "
+                  >
+                    <span
+                      *ngIf="stockQuotes[item.companyTicker]?.changePercent > 0"
+                      class="text-success"
+                      >&#x25B2;</span
+                    >
+                    <span
+                      *ngIf="stockQuotes[item.companyTicker]?.changePercent < 0"
+                      class="text-danger"
+                      >&#x25BC;</span
+                    >
+                    {{
+                      stockQuotes[item.companyTicker]?.changePercent
+                        | number : "1.2-2"
+                    }}%
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p>
+                  Avg. Cost / Share:
+                  <span *ngIf="item.quantity && item.totalCost">
+                    {{ item.totalCost / item.quantity | number : "1.2-2" }}
+                  </span>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  Current Price:
+                  <span>{{
+                    stockQuotes[item.companyTicker]?.currentPrice
+                      | number : "1.2-2"
+                  }}</span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p>
+                  Total Cost:
+                  <span>{{ item.totalCost | number : "1.2-2" }}</span>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  Market Value:
+                  <span>{{
+                    stockQuotes[item.companyTicker]?.currentPrice *
+                      item.quantity | number : "1.2-2"
+                  }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="
+                openBuyModal(
+                  item.companyTicker,
+                  stockQuotes[item.companyTicker]?.currentPrice,
+                  balance,
+                  item.companyName
+                )
+              "
+            >
+              Buy
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger ms-2"
+              (click)="
+                openSellModal(
+                  item.companyTicker,
+                  stockQuotes[item.companyTicker]?.currentPrice,
+                  balance,
+                  item.companyName,
+                  item.quantity
+                )
+              "
+            >
+              Sell
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noPortfolio>
+      <div class="text-center">
+        <div class="alert alert-warning" role="alert">
+          Currently you don't have any stock.
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="col-md-2"></div>
+</div>

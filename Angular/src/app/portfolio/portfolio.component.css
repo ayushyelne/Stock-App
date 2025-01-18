@@ -1,0 +1,14 @@
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* .text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+} */
