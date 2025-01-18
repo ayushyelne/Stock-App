@@ -1,0 +1,24 @@
+.buy-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  
+  .price-info {
+    margin-bottom: 20px;
+  }
+  
+  .total-info {
+    margin-top: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .buy-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+  

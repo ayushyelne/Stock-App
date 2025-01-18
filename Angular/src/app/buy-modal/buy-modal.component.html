@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h5 class="modal-title">{{ data.stockSymbol }}</h5>
+</div>
+
+<div class="modal-body">
+  <p class="mb-2">
+    Current Price: <strong>{{ data.currentPrice }}</strong>
+  </p>
+  <p class="mb-4">
+    Money in Wallet: <strong>{{ data.moneyInWallet | currency }}</strong>
+  </p>
+
+  <div class="form-group">
+    <label for="quantityInput">Quantity:</label>
+    <input
+      type="number"
+      class="form-control"
+      id="quantityInput"
+      [(ngModel)]="quantity"
+      min="0"
+      (ngModelChange)="calculateTotal()"
+      placeholder="0"
+    />
+  </div>
+  <p *ngIf="quantity !== null && !sufficientFunds" class="text-danger">
+    Not enough money in wallet.
+  </p>
+</div>
+
+<div class="modal-footer">
+  <p>
+    Total: <strong>{{ total }}</strong>
+  </p>
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)="buyStocks()"
+    [disabled]="!sufficientFunds"
+  >
+    Buy
+  </button>
+</div>
