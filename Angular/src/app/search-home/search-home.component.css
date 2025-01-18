@@ -1,0 +1,53 @@
+/* .input-group {
+  max-width: 70%; 
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.text-center {
+  margin-top: 1%;
+}
+
+.form-inline {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.input-group {
+  width: 100%;
+  border: 2px solid #130296; 
+  border-radius: 20px;
+}
+
+.form-control {
+  border-radius: 20px 0 0 20px; 
+  border-right: 0; 
+}
+
+.input-group .btn {
+  background-color: white;
+  color: #007bff; 
+  border: 0; 
+  border-left: none; 
+}
+
+.input-group .btn:first-child {
+  border-top-left-radius: 0; 
+  border-bottom-left-radius: 0; 
+}
+
+.input-group .btn:last-child,
+.btn-clear {
+  border-radius: 0 20px 20px 0; 
+  background-color: transparent;
+  border-left: none; 
+}
+
+.btn-outline-secondary:hover {
+  color: white;
+  background-color: #007bff; 
+}
+
+.input-group-append {
+  margin-left: -1px; 
+}

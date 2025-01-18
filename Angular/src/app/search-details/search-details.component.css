@@ -1,0 +1,91 @@
+/* search-details.component.css */
+/* .card {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+} */
+
+/* You can add more custom styles here based on your needs */
+/* .img-fluid {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+/* .container {
+  width: 70%;
+} */
+
+/* .news-card {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.img-container {
+  flex: 0 0 auto;
+  width: 30%;
+  width: 100px; 
+  height: 100px; 
+  overflow: hidden;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.news-img {
+  width: 85%;
+  object-fit: cover;
+  height: 50%;
+}
+
+.card-body {
+  flex: 1;
+  padding: 0.5rem;
+} */
+
+.img-fluid {
+  height: 85px;
+}
+
+.news-card {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgb(244, 244, 244);
+}
+
+.img-container {
+  flex: 0 0 auto;
+  width: 100px; /* Adjusted to a fixed width */
+  height: 100px; /* Adjusted to a fixed height */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.news-img {
+  width: 85%;
+  object-fit: cover;
+  height: auto; /* Changed to auto for maintaining aspect ratio */
+}
+
+.card-body {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.star-btn {
+  border: none; /* Removes the border */
+  background: none; /* Removes the default background */
+  color: #ffd900; /* Sets the color of the star to gold */
+  font-size: 1.5rem; /* Adjust the size as needed */
+}
+
+.star-btn:focus {
+  outline: none; /* Removes the focus outline */
+  box-shadow: none; /* Removes the focus box shadow */
+}
+
+.bi-star {
+  color: black; /* Sets the color of the star to black */
+}

@@ -1,0 +1,68 @@
+<div class="container mt-3">
+  <div class="text-center mb-3">
+    <h1>STOCK SEARCH</h1>
+  </div>
+
+  <div class="row justify-content-center">
+    <form
+      class="form-inline justify-content-center"
+      (ngSubmit)="searchStock(tickerSymbol)"
+    >
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter stock ticker symbol"
+          aria-label="Stock ticker symbol"
+          [(ngModel)]="tickerSymbol"
+          name="tickerSymbol"
+          aria-describedby="button-addon2"
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+          matInput
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="submit"
+            id="button-search"
+          >
+            <i class="bi bi-search"></i>
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-clear"
+            (click)="clearSearch()"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+    </form>
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="onTickerSelection($event)"
+    >
+      <mat-option *ngIf="isAutocompleteLoading"
+        ><mat-spinner diameter="30"></mat-spinner
+      ></mat-option>
+
+      <mat-option
+        *ngFor="let option of filteredStocks | async"
+        [value]="option.displaySymbol"
+      >
+        {{ option.displaySymbol }} | {{ option.description }}
+      </mat-option>
+    </mat-autocomplete>
+
+    <app-search-details
+      *ngIf="stockData"
+      [stockData]="stockData"
+    ></app-search-details>
+  </div>
+</div>
