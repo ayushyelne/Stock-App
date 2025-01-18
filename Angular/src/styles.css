@@ -1,0 +1,35 @@
+/* html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+footer {
+  background-color: gray;
+  height: 40px;
+  text-align: center;
+  z-index: 10;
+} */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  background-color: gray;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
