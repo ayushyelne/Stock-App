@@ -1,0 +1,90 @@
+<div class="container mt-5 text-start row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="mb-4">
+      <h1 class="text-start mb-4">My Watchlist</h1>
+    </div>
+
+    <div *ngIf="isWatchlistLoading" class="spinner-container">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+
+    <div *ngIf="!isWatchlistLoading">
+      <div *ngIf="watchlist.length > 0; else noWatchlist" class="container">
+        <div *ngFor="let item of watchlist" class="col-12">
+          <div class="card mb-3">
+            <div>
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="
+                  removeFromWatchlist(item.companyTicker);
+                  $event.stopPropagation()
+                "
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div
+              class="card-body cursor-pointer"
+              (click)="navigateToDetails(item.companyTicker)"
+            >
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="card-title">{{ item.companyTicker }}</h4>
+                  <h5 class="card-title">{{ item.companyName }}</h5>
+                </div>
+                <div class="col-md-6 text-md-right">
+                  <h4
+                    class="card-subtitle mb-2"
+                    [ngClass]="
+                      updateColor(stockQuotes[item.companyTicker]?.priceChange)
+                    "
+                  >
+                    {{ stockQuotes[item.companyTicker]?.currentPrice }}
+                  </h4>
+                  <p
+                    class="card-text"
+                    [ngClass]="
+                      updateColor(stockQuotes[item.companyTicker]?.priceChange)
+                    "
+                  >
+                    <span
+                      *ngIf="stockQuotes[item.companyTicker]?.priceChange > 0"
+                      class="text-success"
+                      >&#x25B2;</span
+                    >
+                    <span
+                      *ngIf="stockQuotes[item.companyTicker]?.priceChange < 0"
+                      class="text-danger"
+                      >&#x25BC;</span
+                    >
+                    {{
+                      stockQuotes[item.companyTicker]?.priceChange
+                        | number : "1.2-2"
+                    }}
+                    ({{
+                      stockQuotes[item.companyTicker]?.changePercent / 100
+                        | percent : "1.2-2"
+                    }})
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noWatchlist>
+      <div class="text-center">
+        <div class="alert alert-warning" role="alert">
+          Currently you don't have any stock in your watchlist.
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="col-md-2"></div>
+</div>

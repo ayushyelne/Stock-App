@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h5 class="modal-title">{{ stockSymbol }}</h5>
+</div>
+
+<div class="modal-body">
+  <p>
+    Current Price: <strong>{{ currentPrice | currency }}</strong>
+  </p>
+  <p>
+    Money in Wallet: <strong>{{ moneyInWallet | currency }}</strong>
+  </p>
+  <div class="form-group">
+    <label for="quantityInput">Quantity:</label>
+    <input
+      type="number"
+      class="form-control"
+      id="quantityInput"
+      [(ngModel)]="quantityToSell"
+      (ngModelChange)="onQuantityChange()"
+      min="1"
+      placeholder="Enter quantity to sell"
+    />
+  </div>
+  <p *ngIf="(quantityToSell ?? 0) > quantityOwned" class="text-danger">
+    You cannot sell stocks you don't have.
+  </p>
+</div>
+
+<div class="modal-footer">
+  <p>
+    Total: <strong>{{ total | currency }}</strong>
+  </p>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="sellStocks()"
+    [disabled]="!sufficientStock"
+  >
+    Sell
+  </button>
+</div>
